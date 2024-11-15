@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_app/core/utils/date_ex/date_ex.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../core/utils/app_styles.dart';
 import '../../../database_manager/model/todo_dm.dart';
@@ -46,7 +47,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Add new task',
+              AppLocalizations.of(context)!.addingNewTask,
               textAlign: TextAlign.center,
               style: LightAppStyle.bottomSheetTitle,
             ),
@@ -56,13 +57,13 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             TextFormField(
               validator: (input) {
                 if (input == null || input.trim().isEmpty) {
-                  return 'Plz, enter task title';
+                  return AppLocalizations.of(context)!.please+AppLocalizations.of(context)!.enterTaskTitle;
                 }
                 return null;
               },
               controller: titleController,
               decoration: InputDecoration(
-                  hintText: 'enter your task title',
+                  hintText: AppLocalizations.of(context)!.enterTaskTitle,
                   hintStyle: LightAppStyle.hint),
             ),
             const SizedBox(
@@ -71,7 +72,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             TextFormField(
               validator: (input) {
                 if (input == null || input.trim().isEmpty) {
-                  return 'Plz, enter description';
+                  return AppLocalizations.of(context)!.please+AppLocalizations.of(context)!.enterTaskDescription;
                 }
                 if (input.length < 6) {
                   return 'Sorry, description should be at least 6 chars';
@@ -80,7 +81,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               },
               controller: descriptionController,
               decoration: InputDecoration(
-                  hintText: 'enter your task description',
+                  hintText: AppLocalizations.of(context)!.enterTaskDescription,
                   hintStyle: LightAppStyle.hint),
             ),
             const SizedBox(
@@ -104,7 +105,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                 onPressed: () {
                   addTaskToFireStore();
                 },
-                child: const Text('Add task'))
+                child:  Text(AppLocalizations.of(context)!.addingNewTask))
           ],
         ),
       ),

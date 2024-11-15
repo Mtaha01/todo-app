@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/presentation/home/tabs/settings_tab/settings_tab.dart';
 import 'package:todo_app/presentation/home/tabs/tasks_tab/tasks_tab.dart';
-
 import 'add_task_bottom_sheet/add_task_bottom_sheet.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -33,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ToDo List'),
+        title: Text(AppLocalizations.of(context)!.appTitle),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: buildFab(),
@@ -56,10 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
             currentIndex = tappedIndex;
             setState(() {});
           },
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.list), label: 'Tasks'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.settings_outlined), label: 'Settings'),
+          items: [
+            BottomNavigationBarItem(icon: const Icon(Icons.list), label: AppLocalizations.of(context)!.tasksTab),
+            BottomNavigationBarItem(icon: Icon(Icons.settings_outlined), label: AppLocalizations.of(context)!.settingsTitle),
           ]),
     ),
   );

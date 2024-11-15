@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/utils/colors_manager.dart';
@@ -40,7 +41,7 @@ class TodoItem extends StatelessWidget {
               backgroundColor: ColorsManager.red,
               foregroundColor: Colors.white,
               icon: Icons.delete,
-              label: 'Delete',
+              label: AppLocalizations.of(context)!.deleteOption,
             ),
           ],
         ),
@@ -55,7 +56,7 @@ class TodoItem extends StatelessWidget {
             backgroundColor: ColorsManager.blue,
             foregroundColor: Colors.white,
             icon: Icons.edit,
-            label: 'Edit',
+            label:AppLocalizations.of(context)!.editOption ,
           ),
         ]),
         child: Container(
@@ -111,7 +112,6 @@ class TodoItem extends StatelessWidget {
   }
 
   void deleteTodoFromFireStore(TodoDM todo) async {
-    print('enter delete function');
     CollectionReference todoCollection = FirebaseFirestore.instance
         .collection(UserDM.collectionName)
         .doc(UserDM.currentUser!.id)

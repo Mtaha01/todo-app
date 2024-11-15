@@ -9,6 +9,7 @@ import '../../../../core/utils/colors_manager.dart';
 import '../../../../database_manager/model/todo_dm.dart';
 import '../../../../database_manager/model/user_DM.dart';
 import 'task_item/todo_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class TasksTab extends StatefulWidget {
@@ -62,7 +63,6 @@ class TasksTabState extends State<TasksTab> {
   }
 
   Widget buildCalender() {
-    "SELECT * FROM Customer";
     return EasyInfiniteDateTimeLine(
       firstDate: DateTime.now().subtract(Duration(days: 365)),
       focusDate: calenderSelectedDate,
@@ -83,7 +83,7 @@ class TasksTabState extends State<TasksTab> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  date.getDayName,
+                  date.getDayName(date, context),
                   style: isSelected
                       ? LightAppStyle.calenderSelectedDate
                       : LightAppStyle.calenderUnSelectedDate,
@@ -99,12 +99,11 @@ class TasksTabState extends State<TasksTab> {
           ),
         );
       },
+      locale:Localizations.localeOf(context).toString() ,
     );
   }
 
   void getTodosFromFireStore() async {
-    // todo
-
     CollectionReference todoCollection = FirebaseFirestore.instance
         .collection(UserDM.collectionName)
         .doc(UserDM.currentUser!.id)

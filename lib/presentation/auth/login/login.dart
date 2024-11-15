@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../../core/utils/app_styles.dart';
 import '../../../core/utils/assetsManager.dart';
@@ -72,7 +73,7 @@ class _LoginState extends State<Login> {
                   height: 12.h,
                 ),
                 Text(
-                  'Email address',
+                  AppLocalizations.of(context)!.email,
                   style: LightAppStyle.title,
                 ),
                 SizedBox(
@@ -97,7 +98,7 @@ class _LoginState extends State<Login> {
                   height: 12.h,
                 ),
                 Text(
-                  'Password',
+                  AppLocalizations.of(context)!.password,
                   style: LightAppStyle.title,
                 ),
                 SizedBox(
@@ -115,7 +116,6 @@ class _LoginState extends State<Login> {
                   keyboardType: TextInputType.visiblePassword,
                   isSecureText: true,
                 ), // password
-
                 SizedBox(
                   height: 12.h,
                 ),
@@ -129,7 +129,7 @@ class _LoginState extends State<Login> {
                       login();
                     },
                     child: Text(
-                      'Sign-In',
+                      AppLocalizations.of(context)!.logIn,
                       style: LightAppStyle.buttonText,
                     ))
               ],
