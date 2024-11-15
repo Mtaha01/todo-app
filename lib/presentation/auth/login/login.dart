@@ -10,7 +10,7 @@ import '../../../core/utils/assetsManager.dart';
 import '../../../core/utils/constant_manager.dart';
 import '../../../core/utils/dialog/dialogs.dart';
 import '../../../core/utils/emial_validation.dart';
-import '../../../core/utils/routes_ manager.dart';
+import '../../../core/utils/routes_manager.dart';
 import '../../../core/utils/strings_manager.dart';
 import '../../../database_manager/model/user_DM.dart';
 import '../widgets/custom_text_field.dart';
