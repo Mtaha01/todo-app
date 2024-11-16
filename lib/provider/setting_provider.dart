@@ -15,4 +15,8 @@ class SettingsProvider extends ChangeNotifier{
     currentLang=lang;
     notifyListeners();
   }
+
+  void dataUpdated(){
+    notifyListeners();
+  }
 }

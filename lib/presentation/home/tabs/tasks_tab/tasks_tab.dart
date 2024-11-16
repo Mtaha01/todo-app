@@ -20,7 +20,7 @@ class TasksTab extends StatefulWidget {
 }
 
 class TasksTabState extends State<TasksTab> {
-  DateTime calenderSelectedDate = DateTime.now(); //
+  DateTime calenderSelectedDate = DateTime.now();
   List<TodoDM> todosList = [];
 
   /// empty state
@@ -139,4 +139,6 @@ class TasksTabState extends State<TasksTab> {
     //     .toList();
     setState(() {});
   }
+
+
 }

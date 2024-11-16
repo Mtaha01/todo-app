@@ -26,5 +26,7 @@
   "register": "Register",
   "fullName": "Full Name",
   "userName": "User Name",
-  "rePassword": "ReEnter Password"
+  "rePassword": "ReEnter Password",
+  "editTask": "Edit Task"
+
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/database_manager/model/todo_dm.dart';
 import 'package:todo_app/presentation/home/home_screen.dart';
 import 'package:todo_app/presentation/home/tabs/tasks_tab/edit_task/edit_task.dart';
 
@@ -25,7 +26,8 @@ class RoutesManager{
         );
       case editTask:
         return MaterialPageRoute(
-          builder: (context) => const EditTask(),
+          settings: settings,
+          builder: (context) =>  EditTask(),
         );
     }
   }

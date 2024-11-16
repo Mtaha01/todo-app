@@ -3,11 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_app/core/utils/routes_manager.dart';
+import 'package:todo_app/presentation/home/tabs/tasks_tab/tasks_tab.dart';
 
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/utils/colors_manager.dart';
 import '../../../../../database_manager/model/todo_dm.dart';
 import '../../../../../database_manager/model/user_DM.dart';
+import '../../../../../provider/setting_provider.dart';
 
 
 class TodoItem extends StatelessWidget {
@@ -19,6 +23,7 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var myProvider=Provider.of<SettingsProvider>(context);
     return Container(
       margin: REdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -52,7 +57,8 @@ class TodoItem extends StatelessWidget {
                 topRight: Radius.circular(15),
                 bottomRight: Radius.circular(15)),
             flex: 2,
-            onPressed: (context) {},
+            onPressed: (context) {Navigator.of(context).pushNamed(RoutesManager.editTask,arguments: DataNeededToUpdate(todo: todo, afterEdit: onDeletedTask));
+              },
             backgroundColor: ColorsManager.blue,
             foregroundColor: Colors.white,
             icon: Icons.edit,
@@ -71,7 +77,7 @@ class TodoItem extends StatelessWidget {
                 height: 62,
                 width: 4,
                 decoration: BoxDecoration(
-                  color: ColorsManager.blue,
+                  color:todo.isDone?ColorsManager.green: ColorsManager.blue,
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -83,7 +89,7 @@ class TodoItem extends StatelessWidget {
                 children: [
                   Text(
                     todo.title,
-                    style: LightAppStyle.todoTitle,
+                    style: todo.isDone?LightAppStyle.todoTitle.copyWith(color: ColorsManager.green):LightAppStyle.todoTitle,
                   ),
                   SizedBox(
                     height: 4,
@@ -95,7 +101,10 @@ class TodoItem extends StatelessWidget {
                 ],
               ),
               Spacer(),
-              Container(
+              InkWell(
+                  child:todo.isDone ? Container(child: Text("is Done!",style: LightAppStyle.todoTitle.copyWith(color: ColorsManager.green,fontWeight: FontWeight.w900),),)
+                  :
+                  Container(
                   padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                   decoration: BoxDecoration(
                       color: ColorsManager.blue,
@@ -103,7 +112,12 @@ class TodoItem extends StatelessWidget {
                   child: Icon(
                     Icons.check,
                     color: ColorsManager.white,
-                  ))
+                  ),),
+              onTap: ()async{
+                    await taskIsDone(todo).then((onValue){onDeletedTask();});
+                    
+              },
+              )
             ],
           ),
         ),
@@ -119,4 +133,18 @@ class TodoItem extends StatelessWidget {
     DocumentReference todoDoc = todoCollection.doc(todo.id);
     await todoDoc.delete();
   }
+
+  Future<void> taskIsDone(TodoDM todo) async {
+    CollectionReference todoCollection = FirebaseFirestore.instance
+        .collection(UserDM.collectionName)
+        .doc(UserDM.currentUser!.id)
+        .collection(TodoDM.collectionName);
+    DocumentReference todoDoc = todoCollection.doc(todo.id);
+    await todoDoc.update({'isDone':!todo.isDone});
+  }
+}
+class DataNeededToUpdate{
+  TodoDM todo;
+  Function afterEdit;
+  DataNeededToUpdate({required this.todo,required this.afterEdit});
 }

@@ -12,6 +12,8 @@ class ColorsManager {
   static const Color fieldBlack = Color(0xFF000000);
   static const Color darkBlue = Color(0xFF060E1E);
   static const Color lightBlack = Color(0xFF141922);
+  static const Color green = Color(0xFF61E757);
+
 
 
 }
