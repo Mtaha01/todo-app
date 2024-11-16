@@ -76,7 +76,7 @@ class TasksTabState extends State<TasksTab> {
           },
           child: Card(
             elevation: 8,
-            color: ColorsManager.white,
+            color: Theme.of(context).colorScheme.onPrimary,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             child: Column(
@@ -85,14 +85,14 @@ class TasksTabState extends State<TasksTab> {
                 Text(
                   date.getDayName(date, context),
                   style: isSelected
-                      ? LightAppStyle.calenderSelectedDate
-                      : LightAppStyle.calenderUnSelectedDate,
+                      ? Theme.of(context).textTheme.bodyMedium
+                      : Theme.of(context).textTheme.bodySmall,
                 ),
                 Text(
                   '${date.day}',
                   style: isSelected
-                      ? LightAppStyle.calenderSelectedDate
-                      : LightAppStyle.calenderUnSelectedDate,
+                      ?Theme.of(context).textTheme.bodyMedium
+                      : Theme.of(context).textTheme.bodySmall,
                 )
               ],
             ),

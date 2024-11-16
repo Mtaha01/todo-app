@@ -90,7 +90,7 @@ class TodoItem extends StatelessWidget {
                   ),
                   Text(
                     todo.description,
-                    style: LightAppStyle.todoDesc,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                 ],
               ),

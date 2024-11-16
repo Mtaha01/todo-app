@@ -49,7 +49,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
             Text(
               AppLocalizations.of(context)!.addingNewTask,
               textAlign: TextAlign.center,
-              style: LightAppStyle.bottomSheetTitle,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(
               height: 8,
@@ -88,7 +88,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               height: 8,
             ),
             Text(
-              'Select date',
+              AppLocalizations.of(context)!.selectDate,
               style: LightAppStyle.date,
             ),
             InkWell(
@@ -102,6 +102,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                 )),
             const Spacer(),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.onSecondary),
                 onPressed: () {
                   addTaskToFireStore();
                 },

@@ -10,4 +10,8 @@ class ColorsManager {
   static const Color hint = Color(0xFFA9A9A9);
   static const Color red = Color(0xFFEC4B4B);
   static const Color fieldBlack = Color(0xFF000000);
+  static const Color darkBlue = Color(0xFF060E1E);
+  static const Color lightBlack = Color(0xFF141922);
+
+
 }

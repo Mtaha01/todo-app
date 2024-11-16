@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:todo_app/core/utils/colors_manager.dart';
 import '../../../core/utils/app_styles.dart';
 
 typedef Validator = String? Function(String?);
@@ -38,7 +39,9 @@ class CustomTextField extends StatelessWidget {
               borderRadius: BorderRadius.circular(15.r),
               borderSide: const BorderSide(color: Colors.red)),
           hintText: hintText,
-          hintStyle: LightAppStyle.hintRegister),
+          hintStyle: LightAppStyle.hintRegister,
+      ),
+      style: TextStyle(color: ColorsManager.black),
     );
   }
 }

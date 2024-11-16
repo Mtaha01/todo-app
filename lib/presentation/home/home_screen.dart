@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_app/core/utils/colors_manager.dart';
 import 'package:todo_app/presentation/home/tabs/settings_tab/settings_tab.dart';
 import 'package:todo_app/presentation/home/tabs/tasks_tab/tasks_tab.dart';
 import 'add_task_bottom_sheet/add_task_bottom_sheet.dart';
@@ -68,6 +69,6 @@ class _HomeScreenState extends State<HomeScreen> {
           // access reading data from firestore
           tasksTabKey.currentState?.getTodosFromFireStore();
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add,color: ColorsManager.white,),
       );
 }

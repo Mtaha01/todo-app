@@ -25,7 +25,7 @@ class _SettingsTabState extends State<SettingsTab> {
         children: [
           Text(
             AppLocalizations.of(context)!.theme,
-            style: LightAppStyle.settingsTabLabel,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           SizedBox(height: 4,),
           Container(
@@ -57,7 +57,7 @@ class _SettingsTabState extends State<SettingsTab> {
           SizedBox(height: 10,),
           Text(
             AppLocalizations.of(context)!.language,
-            style: LightAppStyle.settingsTabLabel,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
           SizedBox(height: 4,),
           Container(
