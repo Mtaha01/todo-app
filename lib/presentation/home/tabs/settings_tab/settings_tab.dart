@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/core/utils/app_styles.dart';
 import 'package:todo_app/core/utils/colors_manager.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:todo_app/provider/setting_provider.dart';
 
 class SettingsTab extends StatefulWidget {
 
@@ -17,6 +19,7 @@ class _SettingsTabState extends State<SettingsTab> {
 
   @override
   Widget build(BuildContext context) {
+    var myProvider=Provider.of<SettingsProvider>(context);
     return Padding(
       padding: EdgeInsets.all(8),
       child: Column(
@@ -44,13 +47,17 @@ class _SettingsTabState extends State<SettingsTab> {
                 DropdownMenuEntry(value: 'dark', label: AppLocalizations.of(context)!.darkTheme),
               ],
               textStyle: LightAppStyle.selectedItemLabel,
-              initialSelection:"light",
+              initialSelection:myProvider.currentTheme==ThemeMode.light?'light':'dark',
               width: double.infinity,
               inputDecorationTheme: InputDecorationTheme(
                 border: InputBorder.none,
               ),
               controller: selectedTheme,
               onSelected: (value){
+                if(value=='light')
+                myProvider.changeAppTheme(ThemeMode.light);
+                else
+                  myProvider.changeAppTheme(ThemeMode.dark);
               } ,
             ),
           ),
@@ -76,14 +83,17 @@ class _SettingsTabState extends State<SettingsTab> {
                 DropdownMenuEntry(value: 'ar', label: 'العربية'),
               ],
               textStyle: LightAppStyle.selectedItemLabel,
-              initialSelection:"en",
+              initialSelection:myProvider.currentLang,
               width: double.infinity,
               inputDecorationTheme: InputDecorationTheme(
                 border: InputBorder.none,
               ),
               controller: selectedLanguage,
               onSelected: (value){
-
+                  if(value=='en')
+                    myProvider.changeAppLang('en');
+                  else
+                    myProvider.changeAppLang('ar');
               } ,
             ),
           ),
